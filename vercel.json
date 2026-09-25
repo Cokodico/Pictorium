@@ -16,5 +16,11 @@
       "path": "/api/warmup",
       "schedule": "0 3 * * *"
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "KV_REST_API_URL": "@STORAGE_REST_API_URL",
+      "KV_REST_API_TOKEN": "@STORAGE_REST_API_TOKEN"
+    }
+  }
 }
