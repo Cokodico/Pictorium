@@ -1,3 +1,11 @@
+
+Les en-têtes nécessaires pour **Stremio Web** (CORS) ont été ajoutés à l'intérieur de votre bloc de configuration existant, tout en conservant vos régions, vos crons de préchauffage (```unset
+warmup
+```) et vos règles de sécurité initiales.
+
+### 📋 Code fusionné à copier/coller :
+
+```json
 {
   "regions": ["fra1"],
   "headers": [
@@ -7,7 +15,11 @@
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://image.tmdb.org; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self' https://huggingface.co https://*.huggingface.co https://*.hf.space" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
+        { "key": "Access-Control-Allow-Credentials", "value": "true" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
+        { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" }
       ]
     }
   ],
@@ -18,3 +30,17 @@
     }
   ]
 }
+```
+
+---
+
+### ➡️ Prochaines étapes :
+1. **Écrasez** le contenu actuel de votre fichier `vercel.json` sur GitHub avec ce bloc de code.
+2. **Validez les changements** (*Commit changes*).
+3. Vercel va relancer automatiquement la compilation de votre addon Pictorium. Une fois terminé, l'erreur « Failed to fetch » sur Stremio Web disparaîtra.
+
+<FollowUp>
+Une fois le déploiement terminé, dites-moi :
+* Si le **manifest s'installe correctement** sur Stremio Web ?
+* Si vous rencontrez un autre blocage (comme l'écran de **configuration du PIN** initial) ?
+</FollowUp>
